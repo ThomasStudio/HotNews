@@ -7,11 +7,11 @@ package com.hotnews.ui.pages
 /**
  * Page enum class for navigation in NavHost
  */
-enum class Page(val title: String = "") {
-    Weibo("微博热搜"),
-    Zhihu("知乎"),
-    Sites("热点新闻"),
-    Favorites("收藏夹"),
+enum class PageInfo(val title: String = "") {
+    Weibo("Weibo"),
+    Zhihu("Zhihu"),
+    Sites("Hot News"),
+    Favorites("Favorites"),
     WebView;
 
     /**
@@ -33,7 +33,7 @@ enum class Page(val title: String = "") {
     fun path(vararg values: String) = when (this) {
         WebView -> {
             // two args, url and title
-            """${this.name}/${values[0]}/${values[1]}"""
+            """${name}/${values[0]}/${values[1]}"""
         }
 
         else -> {

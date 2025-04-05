@@ -4,7 +4,6 @@ package com.hotnews.ui.pages.zhihu
  * Created by thomas on 3/5/2025.
  */
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.hotnews.ui.pages.Page
+import com.hotnews.ui.pages.PageInfo
 import com.hotnews.api.ApiResult
 import com.hotnews.api.data.ZhihuTarget
 import com.hotnews.viewmodel.CollectEvents
@@ -32,18 +31,19 @@ import com.hotnews.ui.pages.zhihu.ZhihuViewModel.Event
 import com.hotnews.ui.pages.zhihu.ZhihuViewModel.State
 import com.hotnews.util.compose.TitleBar
 import com.hotnews.util.compose.clickableSingle
-import com.hotnews.util.urlEncode
 
 @Composable
 fun ZhihuView(
     navController: NavController,
-    page: Page = Page.Zhihu,
+    page: PageInfo = PageInfo.Zhihu,
     viewModel: ZhihuViewModel = hiltViewModel()
 ) {
     viewModel.CollectEvents {
         when (it) {
             Event.Back -> navController.popBackStack()
-            else -> Unit
+            is Event.Route -> {
+                navController.navigate(it.route)
+            }
         }
     }
 
@@ -76,15 +76,7 @@ fun ZhihuView(
                                         modifier = Modifier
                                             .padding(5.dp)
                                             .clickableSingle {
-                                                Page.WebView.path(
-                                                    item.target.link.urlEncode(),
-                                                    item.target.title,
-                                                )
-                                                    .let { url ->
-                                                        Log.i("navigate", "WeiboView: $url")
-                                                        navController.navigate(url)
-                                                    }
-
+                                                viewModel.openUrl(item.target)
                                             }
                                     )
                                 }

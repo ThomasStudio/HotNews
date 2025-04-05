@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.hotnews.ui.pages.Page
+import com.hotnews.ui.pages.PageInfo
 import com.hotnews.ui.pages.sites.SitesViewModel.Event
 import com.hotnews.util.compose.CollectEvents
 import com.hotnews.util.compose.TitleBar
@@ -28,7 +28,7 @@ import com.hotnews.util.compose.clickableSingle
 @Composable
 fun SitesView(
     navController: NavHostController,
-    page: Page = Page.Sites,
+    page: PageInfo = PageInfo.Sites,
     viewModel: SitesViewModel = hiltViewModel()
 ) {
     CollectEvents(viewModel.events) {
@@ -50,7 +50,7 @@ fun SitesView(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            items(Page.entries) {
+            items(PageInfo.entries) {
                 if (it != page && it.title.isNotEmpty()) {
                     RouteItem(it,
                         modifier = Modifier
@@ -65,7 +65,7 @@ fun SitesView(
 }
 
 @Composable
-fun RouteItem(route: Page, modifier: Modifier) {
+fun RouteItem(route: PageInfo, modifier: Modifier) {
     Card(
         modifier = modifier
     ) {

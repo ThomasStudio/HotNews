@@ -6,7 +6,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.hotnews.ui.pages.Page
+import com.hotnews.ui.pages.PageInfo
 import com.hotnews.ui.pages.favorites.FavoritesView
 import com.hotnews.ui.pages.sites.SitesView
 import com.hotnews.ui.pages.webview.WebViewView
@@ -24,26 +24,26 @@ fun HomeView(
 ) {
     val navController = rememberNavController()
     NavHost(
-        modifier = modifier, navController = navController, startDestination = Page.Sites.route()
+        modifier = modifier, navController = navController, startDestination = PageInfo.Sites.route()
     ) {
-        composable(Page.Sites.route()) {
+        composable(PageInfo.Sites.route()) {
             SitesView(navController)
         }
-        composable(Page.Weibo.route()) {
+        composable(PageInfo.Weibo.route()) {
             WeiboView(navController)
         }
-        composable(Page.WebView.route()) { backStackEntry ->
-            val url = backStackEntry.arguments?.getString(Page.WebView.getArgs()[0])
-            val title = backStackEntry.arguments?.getString(Page.WebView.getArgs()[1])
+        composable(PageInfo.WebView.route()) { backStackEntry ->
+            val url = backStackEntry.arguments?.getString(PageInfo.WebView.getArgs()[0])
+            val title = backStackEntry.arguments?.getString(PageInfo.WebView.getArgs()[1])
 
             url?.let {
                 WebViewView(it, title = title ?: "", navController = navController)
             }
         }
-        composable(Page.Favorites.route()) {
+        composable(PageInfo.Favorites.route()) {
             FavoritesView(navController)
         }
-        composable(Page.Zhihu.route()) {
+        composable(PageInfo.Zhihu.route()) {
             ZhihuView(navController)
         }
     }

@@ -1,6 +1,6 @@
 package com.hotnews.ui.pages.sites
 
-import com.hotnews.ui.pages.Page
+import com.hotnews.ui.pages.PageInfo
 import com.hotnews.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -13,7 +13,7 @@ import javax.inject.Inject
 class SitesViewModel @Inject constructor() :
     BaseViewModel<SitesViewModel.Event, SitesViewModel.State>(State.Loading) {
 
-    fun route(route: Page) {
+    fun route(route: PageInfo) {
         send(Event.Route(route.path()))
     }
 

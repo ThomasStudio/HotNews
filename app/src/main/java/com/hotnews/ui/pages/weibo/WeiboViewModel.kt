@@ -5,9 +5,10 @@ import com.hotnews.api.ApiResult
 import com.hotnews.api.data.HotItem
 import com.hotnews.api.data.WeiboHot
 import com.hotnews.repository.WeiboRepository
+import com.hotnews.ui.pages.PageInfo
+import com.hotnews.util.urlEncode
 import com.hotnews.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -34,8 +35,20 @@ class WeiboViewModel @Inject constructor(
         )
     }
 
+    fun openUrl(item: HotItem) {
+        send(
+            Event.Route(
+                PageInfo.WebView.path(
+                    item.url.urlEncode(),
+                    item.title,
+                )
+            )
+        )
+    }
+
     sealed class Event {
         data object Back : Event()
+        data class Route(val route: String) : Event()
     }
 
     sealed class State {

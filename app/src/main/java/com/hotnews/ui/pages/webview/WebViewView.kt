@@ -73,9 +73,6 @@ fun WebViewView(
     }
 
     viewModel.CollectState {
-        when (it) {
-            else -> Unit
-        }
     }
 
     BackHandler(enabled = canGoBack) {

@@ -1,9 +1,9 @@
 package com.hotnews.repository
 
+import android.util.Log
 import com.hotnews.api.ApiResult
 import com.hotnews.api.ApiRepository
 import com.hotnews.api.data.ZhihuHot
-import com.hotnews.api.service.ZhihuService.Types
 import com.hotnews.api.service.ZhihuService
 import com.hotnews.di.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
@@ -20,7 +20,7 @@ open class ZhihuRepository @Inject constructor(
     private val service: ZhihuService,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) : ApiRepository() {
-    suspend fun getHot(type: Types): ApiResult<ZhihuHot> = withContext(dispatcher) {
-        runApiCall { service.getHot(type.path) }
+    suspend fun getHot(): ApiResult<ZhihuHot> = withContext(dispatcher) {
+        runApiCall { service.getHot() }
     }
 }

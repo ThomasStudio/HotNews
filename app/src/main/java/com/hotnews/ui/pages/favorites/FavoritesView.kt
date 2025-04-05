@@ -24,7 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.hotnews.ui.pages.Page
+import com.hotnews.ui.pages.PageInfo
 import com.hotnews.database.entity.Favorites
 import com.hotnews.util.compose.TitleBar
 import com.hotnews.util.compose.clickableSingle
@@ -34,7 +34,7 @@ import com.hotnews.util.urlEncode
 @Composable
 fun FavoritesView(
     navController: NavController,
-    route: Page = Page.Favorites,
+    route: PageInfo = PageInfo.Favorites,
     viewModel: FavoritesViewModel = hiltViewModel()
 ) {
     viewModel.CollectEvents {
@@ -63,7 +63,7 @@ fun FavoritesView(
                                         .padding(horizontal = 10.dp, vertical = 5.dp)
                                         .clickableSingle {
                                             navController.navigate(
-                                                Page.WebView.path(
+                                                PageInfo.WebView.path(
                                                     item.url.urlEncode(),
                                                     item.title,
                                                 )

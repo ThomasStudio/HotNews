@@ -6,7 +6,6 @@ import com.hotnews.api.ApiResponseConverterInterceptor
 import com.hotnews.api.BaseUrl
 import com.hotnews.api.service.WeiboService
 import com.hotnews.api.service.ZhihuService
-import com.hotnews.api.service.ZhihuTopSearchService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,10 +22,6 @@ import javax.inject.Qualifier
  * Created by thomas on 2/21/2025.
  */
 
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class ZhihuTopSearchRetrofit
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
@@ -63,15 +58,6 @@ object NetworkModule {
     fun provideZhihuService(@ZhihuRetrofit retrofit: Retrofit) =
         retrofit.create(ZhihuService::class.java)
 
-
-    @ZhihuTopSearchRetrofit
-    @Provides
-    fun provideZhihuTopSearchRetrofit(okHttpClient: OkHttpClient) =
-        getRetrofit(BaseUrl.ZhihuTopSearch.url, okHttpClient)
-
-    @Provides
-    fun provideZhihuTopService(@ZhihuTopSearchRetrofit retrofit: Retrofit) =
-        retrofit.create(ZhihuTopSearchService::class.java)
 
     @WeiboRetrofit
     @Provides

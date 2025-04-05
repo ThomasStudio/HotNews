@@ -33,13 +33,17 @@ import kotlinx.coroutines.launch
  *
  */
 abstract class BaseViewModel<Event, State>(initState: State) : ViewModel() {
-    // event for UI, such as click button ,show toast etc.
-    // send it and composable should do something accordingly
+    /**
+     * event for UI, such as click button ,show toast etc.
+     * send it and composable should do something accordingly
+     */
     private val _events = MutableSharedFlow<Event>()
     val events: SharedFlow<Event> = _events.asSharedFlow()
 
-    // UI state, it should include necessary data for UI to show
-    // change it and UI should update
+    /**
+     * UI state, it should include necessary data for UI to show
+     * change it and UI should update
+     */
     private val _uiState = MutableStateFlow(initState)
     val uiState: StateFlow<State> = _uiState
 

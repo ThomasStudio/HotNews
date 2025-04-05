@@ -11,15 +11,6 @@ import retrofit2.http.Path
 
 
 interface ZhihuService {
-    @GET("{type}?limit=50")
-    suspend fun getHot(@Path("type") type: String): ApiResponse<ZhihuHot>
-
-    enum class Types(val path: String, val title: String) {
-        Total("total", "全站"),
-        Science("science", "科学"),
-        Digital("digital", "数码"),
-        Sport("sport", "体育"),
-        Fashion("fashion", "时尚"),
-        Film("film", "影视")
-    }
+    @GET("total?limit=50")
+    suspend fun getHot(): ApiResponse<ZhihuHot>
 }
