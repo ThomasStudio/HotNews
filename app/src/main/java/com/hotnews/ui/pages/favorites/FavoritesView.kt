@@ -40,7 +40,6 @@ fun FavoritesView(
     viewModel.CollectEvents {
         when (it) {
             Event.Back -> navController.popBackStack()
-            else -> Unit
         }
     }
 

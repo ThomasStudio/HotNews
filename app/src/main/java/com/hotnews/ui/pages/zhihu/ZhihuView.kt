@@ -86,8 +86,6 @@ fun ZhihuView(
                         is ApiResult.Error -> {
                             Text("${it.data.code} : ${it.data.message}")
                         }
-
-                        else -> Unit
                     }
                 }
             }
