@@ -18,8 +18,10 @@ class ApiResponseConverterInterceptor : Interceptor {
         return try {
             // get original JSON
             val source = response.body?.source()
-            source?.request(Long.MAX_VALUE)
-            val buffer = source?.buffer?.clone()
+            val buffer = source?.let {
+                it.request(Long.MAX_VALUE)
+                it.buffer
+            }
             val originalJson = buffer?.readUtf8()
 
             // build BaseResponse

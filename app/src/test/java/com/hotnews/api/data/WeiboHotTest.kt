@@ -1,13 +1,14 @@
 package com.hotnews.api.data
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 
 /**
  * Created by thomas on 4/5/2025.
  */
 
 class WeiboHotTest {
-    @org.junit.jupiter.api.Test
+    @Test
     fun testWeiboHot() {
         val weiboHot = WeiboHot(
             code = 200,
