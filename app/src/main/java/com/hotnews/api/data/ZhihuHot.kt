@@ -1,6 +1,5 @@
 package com.hotnews.api.data
 
-import android.util.Log
 import com.hotnews.api.BaseUrl
 
 /**

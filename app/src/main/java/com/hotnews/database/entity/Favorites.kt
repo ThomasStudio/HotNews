@@ -3,7 +3,6 @@ package com.hotnews.database.entity
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import java.sql.Time
 
 /**
  * Created by thomas on 2/20/2025.

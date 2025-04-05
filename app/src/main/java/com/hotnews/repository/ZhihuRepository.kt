@@ -1,6 +1,5 @@
 package com.hotnews.repository
 
-import android.util.Log
 import com.hotnews.api.ApiResult
 import com.hotnews.api.ApiRepository
 import com.hotnews.api.data.ZhihuHot

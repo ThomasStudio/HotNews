@@ -3,7 +3,6 @@ package com.hotnews.api.service
 import com.hotnews.api.ApiResponse
 import com.hotnews.api.data.ZhihuHot
 import retrofit2.http.GET
-import retrofit2.http.Path
 
 /**
  * Created by thomas on 2/21/2025.

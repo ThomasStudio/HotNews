@@ -96,7 +96,7 @@ abstract class DaoExamples<T> {
     /**
      * 获取表名
      */
-    val tableName: String
+    private val tableName: String
         get() {
             val clazz = (javaClass.superclass.genericSuperclass as ParameterizedType)
                 .actualTypeArguments[0] as Class<*>

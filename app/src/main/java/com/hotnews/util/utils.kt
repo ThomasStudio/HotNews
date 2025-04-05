@@ -10,10 +10,10 @@ import java.util.Locale
  */
 
 fun Long.toTimeStr(format: String = "yyyy-MM-dd HH:mm:ss"): String {
-    return TimeToString(this, format)
+    return timeToString(this, format)
 }
 
-fun TimeToString(timestamp: Long, format: String = "yyyy-MM-dd HH:mm:ss"): String {
+fun timeToString(timestamp: Long, format: String = "yyyy-MM-dd HH:mm:ss"): String {
     val sdf = SimpleDateFormat(format, Locale.getDefault())
     val date = Date(timestamp)
     return sdf.format(date)

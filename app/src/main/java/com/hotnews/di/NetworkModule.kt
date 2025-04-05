@@ -51,21 +51,21 @@ object NetworkModule {
 
     @ZhihuRetrofit
     @Provides
-    fun provideZhihuRetrofit(okHttpClient: OkHttpClient) =
+    fun provideZhihuRetrofit(okHttpClient: OkHttpClient): Retrofit =
         getRetrofit(BaseUrl.Zhihu.url, okHttpClient)
 
     @Provides
-    fun provideZhihuService(@ZhihuRetrofit retrofit: Retrofit) =
+    fun provideZhihuService(@ZhihuRetrofit retrofit: Retrofit): ZhihuService =
         retrofit.create(ZhihuService::class.java)
 
 
     @WeiboRetrofit
     @Provides
-    fun provideWeiboRetrofit(okHttpClient: OkHttpClient) =
+    fun provideWeiboRetrofit(okHttpClient: OkHttpClient): Retrofit =
         getRetrofit(BaseUrl.Weibo.url, okHttpClient)
 
     @Provides
-    fun provideWeiboService(@WeiboRetrofit retrofit: Retrofit) =
+    fun provideWeiboService(@WeiboRetrofit retrofit: Retrofit): WeiboService =
         retrofit.create(WeiboService::class.java)
 
 }

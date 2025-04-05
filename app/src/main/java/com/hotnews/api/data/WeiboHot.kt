@@ -1,7 +1,5 @@
 package com.hotnews.api.data
 
-import com.google.gson.annotations.SerializedName
-
 /**
  * Created by thomas on 2/28/2025.
  * https://v2.xxapi.cn/api/weibohot

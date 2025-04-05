@@ -49,7 +49,7 @@ abstract class DBRepository<Entity : Any, DAO : BaseDao<Entity>>(
         }
     }
 
-    internal fun translateException(e: Exception): Throwable = when (e) {
+    private fun translateException(e: Exception): Throwable = when (e) {
         is SQLiteConstraintException -> DBException(
             DBError.CONSTRAINT_FAILED,
             "Constraint failed: ${e.message}"
