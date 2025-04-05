@@ -63,8 +63,6 @@ fun WebViewView(
             is Event.Toast -> {
                 Toast(it.msg)
             }
-
-            else -> Unit
         }
     }
 
