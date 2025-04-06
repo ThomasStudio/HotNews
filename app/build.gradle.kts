@@ -55,7 +55,7 @@ android {
         unitTests {
             isIncludeAndroidResources = true
             all {
-                it.useJUnitPlatform() // 启用 JUnit5
+                it.useJUnitPlatform() // use JUnit5
             }
         }
     }

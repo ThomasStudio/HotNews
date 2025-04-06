@@ -20,17 +20,4 @@ webpage: [https://s.weibo.com/top/summary?cate=realtimehot](https://s.weibo.com/
 
 # Zhihu
 
-[https://www.zhihu.com/api/v4/search/top_search](https://www.zhihu.com/api/v4/search/top_search)
-
-
 [https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=50](https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=50)
-
-[https://www.zhihu.com/api/v3/feed/topstory/hot-lists/science?limit=50](https://www.zhihu.com/api/v3/feed/topstory/hot-lists/science?limit=50)
-
-[https://www.zhihu.com/api/v3/feed/topstory/hot-lists/digital?limit=50](https://www.zhihu.com/api/v3/feed/topstory/hot-lists/digital?limit=50)
-
-[https://www.zhihu.com/api/v3/feed/topstory/hot-lists/sport?limit=50](https://www.zhihu.com/api/v3/feed/topstory/hot-lists/sport?limit=50)
-
-[https://www.zhihu.com/api/v3/feed/topstory/hot-lists/fashion?limit=50](https://www.zhihu.com/api/v3/feed/topstory/hot-lists/fashion?limit=50)
-
-[https://www.zhihu.com/api/v3/feed/topstory/hot-lists/film?limit=50](https://www.zhihu.com/api/v3/feed/topstory/hot-lists/film?limit=50)

@@ -16,4 +16,3 @@ open class FavoritesRepository @Inject constructor(
 ) : DBRepository<Favorites, FavoritesDao>(dao) {
     val allBooks = observe { getAll() }
 }
-
