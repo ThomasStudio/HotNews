@@ -127,6 +127,7 @@ dependencies {
 
     // JUnit5 核心依赖
     testImplementation(libs.junit.jupiter.api)
+    androidTestImplementation(libs.junit.jupiter.api)
     testRuntimeOnly(libs.junit.jupiter.engine)
 
     // 参数化测试
@@ -137,6 +138,7 @@ dependencies {
 
     // Robolectric (可选)
     testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.core)
 
     // Android JUnit5 集成
     androidTestImplementation(libs.android.test.core)
