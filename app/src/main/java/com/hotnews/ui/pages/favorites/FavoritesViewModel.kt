@@ -22,7 +22,7 @@ class FavoritesViewModel @Inject constructor(private val repository: FavoritesRe
         getFavorites()
     }
 
-    private fun getFavorites() = viewModelScope.launch {
+    fun getFavorites() = viewModelScope.launch {
         repository.allBooks.firstOrNull()?.let {
             change(State.Data(it))
         }

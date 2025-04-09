@@ -57,6 +57,9 @@ android {
             isIncludeAndroidResources = true
             all {
                 it.useJUnitPlatform() // use JUnit5
+                it.maxParallelForks = 1  // 禁止并行
+                it.forkEvery = 1         // 每个测试独立进程
+
             }
         }
     }
@@ -168,7 +171,7 @@ tasks.withType<Test> {
     }
 
     // 配置并行测试
-    systemProperties["junit.jupiter.execution.parallel.enabled"] = true
-    systemProperties["junit.jupiter.execution.parallel.mode.default"] = "concurrent"
-    maxParallelForks = Runtime.getRuntime().availableProcessors() - 1
+//    systemProperties["junit.jupiter.execution.parallel.enabled"] = true
+//    systemProperties["junit.jupiter.execution.parallel.mode.default"] = "concurrent"
+//    maxParallelForks = Runtime.getRuntime().availableProcessors() - 1
 }
