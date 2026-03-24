@@ -40,4 +40,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "HotNews"
 include(":app")
- 
+include(":base")

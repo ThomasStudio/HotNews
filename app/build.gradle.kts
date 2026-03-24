@@ -69,7 +69,10 @@ android {
 }
 
 dependencies {
-// default
+    // Base module
+    implementation(project(":base"))
+    
+    // default
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
