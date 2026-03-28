@@ -41,7 +41,9 @@
 * BaseState should have a data property that represents the data to be displayed in the UI
 * BaseState should have an error property that represents the error message to be displayed in the UI
 #### Status
-* Status should be an enum class that represents the current status of the UI (Loading, Success, Error)
+* Status should be a sealed class that represents the current status of the UI (Loading, Success, Error)
+* Success status should have a BaseData property that represents the data to be displayed in the UI
+* Error status should have an BaseError property that represents the error message to be displayed in the UI
 * Status should be used in the BaseState to represent the current status of the UI, and should be used by the View to update the UI accordingly
 * Status should be used by the ViewModel to update the uiState with the current status of the UI, and should be used to represent the loading, success, and error states of the UI in a consistent way across the application
 #### BaseData
@@ -53,7 +55,7 @@
 * BaseError should be extended by any specific error class that represents the error of a specific UI
 
 ### BaseEvent:
-* BaseEvent should be a base class that represents the events that can be emitted by the ViewModel
+* BaseEvent should be a base interface that represents the events that can be emitted by the ViewModel
 * BaseEvent should be extended by any specific event class that represents the events of a specific ViewModel, and should be used as the type of event in the ViewModel
 * BaseEvent should be used by the View to observe events from the ViewModel, and handle them accordingly
 * BaseEvent should be used by the ViewModel to emit events to the View, and should not have any specific logic or data associated with it, as it is only a signal for the View to perform a certain action (e.g. navigate to another screen, show a toast message, etc.)
