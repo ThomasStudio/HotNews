@@ -24,7 +24,6 @@ class ZhihuViewModel @Inject constructor(
     override fun initialState() = ZhihuState()
 
     init {
-        Log.d("ZhihuViewModel", "ZhihuViewModel init")
         getData()
     }
 

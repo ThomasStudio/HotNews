@@ -39,8 +39,6 @@ fun ZhihuView(
     page: PageInfo = PageInfo.Zhihu,
     viewModel: ZhihuContract = hiltViewModel<ZhihuViewModel>()
 ) {
-    Log.d("ZhihuView", "ZhihuView compose")
-
     val uiState = viewModel.collectUiState()
     viewModel.handleEvents(navController.asNavigator())
 
@@ -80,36 +78,6 @@ fun ZhihuView(
             is Status.Error -> {
                 Text("${uiState.status.error.code} : ${uiState.status.error.message}")
             }
-
-            /*
-            is Status.Success -> {
-                when (it.data) {
-                    is ApiResult.Success -> {
-                        LazyColumn(
-                            modifier = Modifier
-                                .weight(1.0f)
-                                .fillMaxWidth()
-                        ) {
-                            items(it.data.data.data) { item ->
-                                Item(
-                                    item.target,
-                                    modifier = Modifier
-                                        .padding(5.dp)
-                                        .clickableSingle {
-                                            viewModel.openUrl(item.target)
-                                        }
-                                )
-                            }
-                        }
-                    }
-
-                    is ApiResult.Error -> {
-                        Text("${it.data.code} : ${it.data.message}")
-                    }
-                }
-            }
-            */
-
         }
 
     }
