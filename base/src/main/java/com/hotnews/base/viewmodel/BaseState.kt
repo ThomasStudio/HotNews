@@ -3,14 +3,15 @@ package com.hotnews.base.viewmodel
 /**
  * Created by thomas on 3/29/2026.
  */
-open class BaseState<D : BaseData, E : BaseError>(
-    open val status: Status<D, E> = Status.Loading
+
+open class BaseState<State : BaseData, Event : BaseError>(
+    open val status: Status<State, Event> = Status.Loading
 )
 
-sealed class Status<out D : BaseData, out E : BaseError> {
+sealed class Status<out State : BaseData, out Event : BaseError> {
     object Loading : Status<Nothing, Nothing>()
-    data class Success<D : BaseData>(val data: D) : Status<D, Nothing>()
-    data class Error<E : BaseError>(val error: E) : Status<Nothing, E>()
+    data class Success<State : BaseData>(val data: State) : Status<State, Nothing>()
+    data class Error<Event : BaseError>(val error: Event) : Status<Nothing, Event>()
 }
 
 open class BaseData
