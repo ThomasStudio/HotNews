@@ -1,44 +1,47 @@
-package com.hotnews.feature.zhihu.ui
+package com.hotnews.feature.weibo.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.hotnews.api.data.ZhihuTarget
+import com.hotnews.api.data.HotItem
 import com.hotnews.base.navigation.asNavigator
 import com.hotnews.base.viewmodel.Status
 import com.hotnews.base.viewmodel.collectUiState
 import com.hotnews.base.viewmodel.handleEvents
-import com.hotnews.feature.zhihu.viewmodel.ZhihuContract
-import com.hotnews.feature.zhihu.viewmodel.ZhihuViewModel
+import com.hotnews.feature.weibo.viewmodel.WeiboContract
+import com.hotnews.feature.weibo.viewmodel.WeiboViewModel
 import com.hotnews.ui.pages.PageInfo
+import com.hotnews.ui.theme.WeiboIndex
 import com.hotnews.util.compose.TitleBar
 import com.hotnews.util.compose.clickableSingle
+import android.util.Log
 
 /**
- * Created by thomas on 3/5/2025.
+ * Created by thomas on 3/29/2026.
  */
 
 @Composable
-fun ZhihuView(
+fun WeiboView(
     navController: NavHostController,
-    page: PageInfo = PageInfo.Zhihu,
-    viewModel: ZhihuContract = hiltViewModel<ZhihuViewModel>()
+    page: PageInfo = PageInfo.Weibo,
+    viewModel: WeiboContract = hiltViewModel<WeiboViewModel>()
 ) {
+    Log.d("WeiboView", "WeiboView compose")
+
     val uiState = viewModel.collectUiState()
     viewModel.handleEvents(navController.asNavigator())
 
@@ -47,7 +50,7 @@ fun ZhihuView(
             viewModel.back()
         }
 
-        when (val status = uiState.status) {
+        when (uiState.status) {
             Status.Loading -> {
                 Box(modifier = Modifier.fillMaxWidth()) {
                     CircularProgressIndicator(
@@ -56,42 +59,40 @@ fun ZhihuView(
                 }
             }
 
-            is Status.Success -> {
+            is Status.Success<*> -> {
                 LazyColumn(
                     modifier = Modifier
                         .weight(1.0f)
                         .fillMaxWidth()
                 ) {
-                    val data = status.data.data
+                    val data = (uiState.status as Status.Success).data.data
                     items(data.data) { item ->
-                        Item(
-                            item.target,
-                            modifier = Modifier
-                                .padding(5.dp)
-                                .clickableSingle {
-                                }
+                        HotItem(
+                            item,
+                            modifier = Modifier.clickableSingle {
+                                viewModel.openUrl(item)
+                            }
                         )
                     }
                 }
             }
 
             is Status.Error -> {
-                Text("${status.error.code} : ${status.error.message}")
+                Text("${uiState.status.error.code} : ${uiState.status.error.message}")
             }
         }
-
     }
 }
 
 @Composable
-private fun Item(item: ZhihuTarget, modifier: Modifier = Modifier) {
-    Card(modifier = modifier) {
-        Column(modifier = Modifier.padding(10.dp)) {
-            Text(
-                item.title,
-                color = Color.Blue,
-                fontSize = 22.sp
-            )
-        }
+fun HotItem(item: HotItem, modifier: Modifier) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(2.dp),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(5.dp)
+    ) {
+        Text(item.index.toString(), color = WeiboIndex, modifier = Modifier.weight(0.1f))
+        Text(item.title, modifier = Modifier.weight(1f))
     }
 }
