@@ -38,8 +38,6 @@
 * BaseState should be a base class that represents the state of the UI
 * BaseState should be extended by any specific state class that represents the state of a specific UI, and should be used as the type of uiState in the ViewModel
 * BaseState should have a status property that represents the current status of the UI (Loading, Success, Error)
-* BaseState should have a data property that represents the data to be displayed in the UI
-* BaseState should have an error property that represents the error message to be displayed in the UI
 #### Status
 * Status should be a sealed class that represents the current status of the UI (Loading, Success, Error)
 * Success status should have a BaseData property that represents the data to be displayed in the UI
@@ -72,7 +70,7 @@
 * BaseViewModel should handle the common logic of updating the uiState and emitting events, and should not have any specific logic or data associated with it, as it is only meant to provide a common structure for the ViewModel classes in the application
 
 ### AppRoute
-* AppRoute should be an interface that generate route string
+* AppRoute should be an data class that generate route string
 * AppRoute should have a function to generate route string by a list of path
 * AppRoute should have a function to generate route string with parameters
 * Concrete route class should implement AppRoute and provide the path and parameters for the route

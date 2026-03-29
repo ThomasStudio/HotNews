@@ -6,21 +6,19 @@ import com.hotnews.base.util.StringUtil
  * Created by thomas on 3/29/2026.
  */
 
-abstract class AppRoute {
-    abstract val path: String
+data class AppRoute(val path: String) {
 
-    fun child(vararg segments: String): AppRoute = Route(routeString(path, *segments))
+    fun child(vararg segments: String): AppRoute =
+        AppRoute(routeString(this.path, *segments))
+
     operator fun div(segments: String): AppRoute = child(segments)
 
-    fun withQuery(vararg params: Pair<String, Any?>): String = routeWithQuery(path, *params)
-
-    data class Route(override val path: String) : AppRoute() {
-        override fun toString(): String = path
-    }
-
+    fun withQuery(vararg params: Pair<String, Any?>): String =
+        routeWithQuery(path, *params)
 
     companion object {
-        fun route(vararg segments: String): AppRoute = Route(routeString(*segments))
+        fun create(vararg segments: String): AppRoute =
+            AppRoute(routeString(*segments))
 
         fun routeString(vararg segments: String): String =
             segments.asSequence()
@@ -41,6 +39,5 @@ abstract class AppRoute {
                 .joinToString("&")
             return if (query.isBlank()) normalizedPath else "$normalizedPath?$query"
         }
-
     }
 }

@@ -34,11 +34,11 @@ abstract class BaseViewModel<STATE : BaseState<*, *>> : ViewModel(), BaseContrac
     protected fun send(viewEvent: BaseEvent) {
         if (_event.tryEmit(viewEvent)) return
 
-        launch { _event.emit(viewEvent) }
+        viewModelScope.launch { _event.emit(viewEvent) }
     }
 
     override fun back() {
-        launch { send(BackEvent) }
+        viewModelScope.launch { send(BackEvent) }
     }
 
     protected fun sendMessage(message: String) {
@@ -49,7 +49,4 @@ abstract class BaseViewModel<STATE : BaseState<*, *>> : ViewModel(), BaseContrac
         send(NavigateEvent(route))
     }
 
-    protected fun launch(block: suspend () -> Unit) = viewModelScope.launch {
-        block()
-    }
 }
