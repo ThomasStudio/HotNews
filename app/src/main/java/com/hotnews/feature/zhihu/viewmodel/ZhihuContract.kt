@@ -13,7 +13,7 @@ import com.hotnews.base.viewmodel.Status
 
 interface ZhihuContract : BaseContract<ZhihuState>
 
-class ZhihuState(
+data class ZhihuState(
     override val status: Status<ZhihuData, BaseError> = Status.Loading
 ) : BaseState<ZhihuData, BaseError>(status)
 

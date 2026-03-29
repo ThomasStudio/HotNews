@@ -17,7 +17,7 @@ interface WeiboContract : BaseContract<WeiboState> {
     fun openUrl(item: HotItem)
 }
 
-class WeiboState(
+data class WeiboState(
     override val status: Status<WeiboData, BaseError> = Status.Loading
 ) : BaseState<WeiboData, BaseError>()
 

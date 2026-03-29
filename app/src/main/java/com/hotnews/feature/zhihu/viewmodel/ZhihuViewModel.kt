@@ -10,8 +10,6 @@ import com.hotnews.repository.ZhihuRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import android.util.Log
-import kotlinx.coroutines.delay
 
 /**
  * Created by thomas on 3/5/2025.
@@ -29,24 +27,22 @@ class ZhihuViewModel @Inject constructor(
 
     private fun getData() =
         viewModelScope.launch {
-            when (val data = repository.getHot()) {
-                is Success -> {
-                    updateState {
-                        ZhihuState(Status.Success(ZhihuData(data.data)))
-                    }
+            when (val result = repository.getHot()) {
+                is Success -> updateState {
+                    copy(status = Status.Success(ZhihuData(result.data)))
                 }
 
-                is Error -> {
-                    updateState {
-                        ZhihuState(
-                            Status.Error(
-                                BaseError(
-                                    data.code,
-                                    data.message ?: "unknown error"
-                                )
+
+                is Error -> updateState {
+                    copy(
+                        status = Status.Error(
+                            BaseError(
+                                result.code,
+                                result.message ?: "Unknown error"
                             )
                         )
-                    }
+                    )
+
                 }
             }
         }

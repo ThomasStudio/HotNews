@@ -28,31 +28,25 @@ class WeiboViewModel @Inject constructor(
 
     init {
         Log.d("WeiboViewModel", "WeiboViewModel init")
-        getData()
+        fetchData()
     }
 
-    private fun getData() =
+    private fun fetchData() =
         viewModelScope.launch {
-            when (val data = repository.fetchNews()) {
-                is Success -> {
-                    Log.d("WeiboViewModel", "WeiboViewModel get data success")
-                    updateState {
-                        WeiboState(Status.Success(WeiboData(data.data)))
-                    }
+            when (val result = repository.fetchNews()) {
+                is Success -> updateState {
+                    copy(status = Status.Success(WeiboData(result.data)))
                 }
 
-                is Error -> {
-                    Log.d("WeiboViewModel", "WeiboViewModel get data error: ${data.message}")
-                    updateState {
-                        WeiboState(
-                            Status.Error(
-                                BaseError(
-                                    data.code,
-                                    data.message ?: "unknown error"
-                                )
+                is Error -> updateState {
+                    copy(
+                        status = Status.Error(
+                            BaseError(
+                                result.code,
+                                result.message ?: "Unknown error"
                             )
                         )
-                    }
+                    )
                 }
             }
         }
