@@ -6,12 +6,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.hotnews.feature.zhihu.ui.ZhihuView
 import com.hotnews.ui.pages.PageInfo
 import com.hotnews.ui.pages.favorites.FavoritesView
 import com.hotnews.ui.pages.sites.SitesView
 import com.hotnews.ui.pages.webview.WebViewView
 import com.hotnews.ui.pages.weibo.WeiboView
-import com.hotnews.ui.pages.zhihu.ZhihuView
+//import com.hotnews.ui.pages.zhihu.ZhihuView
 
 /**
  * Created by thomas on 3/2/2025.

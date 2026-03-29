@@ -13,10 +13,10 @@ import kotlinx.coroutines.launch
 /**
  * Created by thomas on 3/29/2026.
  */
-abstract class BaseViewModel<STATE : BaseState<*, *>> : ViewModel(), BaseContract {
+abstract class BaseViewModel<STATE : BaseState<*, *>> : ViewModel(), BaseContract<STATE> {
 
     private val _uiState = MutableStateFlow(initialState())
-    override val uiState: StateFlow<BaseState<*, *>> = _uiState
+    override val uiState: StateFlow<STATE> = _uiState
 
     private val _event = MutableSharedFlow<BaseEvent>()
     override val event: SharedFlow<BaseEvent> = _event.asSharedFlow()
@@ -38,7 +38,7 @@ abstract class BaseViewModel<STATE : BaseState<*, *>> : ViewModel(), BaseContrac
     }
 
     override fun back() {
-        viewModelScope.launch { send(BackEvent) }
+        send(BackEvent)
     }
 
     protected fun sendMessage(message: String) {

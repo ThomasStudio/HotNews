@@ -6,6 +6,12 @@ package com.hotnews.base.viewmodel
 
 interface BaseEvent
 
-data class NavigateEvent(val route: String) : BaseEvent
+data class NavigateEvent(
+    val route: String,
+    val popUpToRoute: String? = null,
+    val inclusive: Boolean = false,
+    val launchSingleTop: Boolean = false,
+) : BaseEvent
+
 object BackEvent : BaseEvent
 data class MessageEvent(val message: String) : BaseEvent
