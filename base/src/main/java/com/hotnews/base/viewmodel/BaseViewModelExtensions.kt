@@ -15,13 +15,13 @@ import kotlinx.coroutines.flow.collectLatest
  */
 
 @Composable
-fun <STATE : BaseState<*, *>> BaseContract<STATE>.collectUiState(): STATE {
+fun <STATE : BaseStateIF> BaseContract<STATE>.collectUiState(): STATE {
     val uiState by this.uiState.collectAsStateWithLifecycle()
     return uiState
 }
 
 @Composable
-fun <STATE : BaseState<*, *>> BaseContract<STATE>.handleEvents(
+fun <STATE : BaseStateIF> BaseContract<STATE>.handleEvents(
     navigator: Navigator? = null,
     onEvent: (BaseEvent) -> Unit = {},
 ) {

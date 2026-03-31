@@ -2,6 +2,7 @@ package com.hotnews.base.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -13,7 +14,11 @@ import kotlinx.coroutines.launch
 /**
  * Created by thomas on 3/29/2026.
  */
-abstract class BaseViewModel<STATE : BaseState<*, *>> : ViewModel(), BaseContract<STATE> {
+abstract class BaseViewModel<STATE : BaseStateIF>(
+    scope: CoroutineScope? = null
+) : ViewModel(), BaseContract<STATE> {
+
+    private val scope = scope ?: viewModelScope
 
     private val _uiState = MutableStateFlow(initialState())
     override val uiState: StateFlow<STATE> = _uiState
@@ -34,7 +39,7 @@ abstract class BaseViewModel<STATE : BaseState<*, *>> : ViewModel(), BaseContrac
     protected fun send(viewEvent: BaseEvent) {
         if (_event.tryEmit(viewEvent)) return
 
-        viewModelScope.launch { _event.emit(viewEvent) }
+        scope.launch { _event.emit(viewEvent) }
     }
 
     override fun back() {
